@@ -1,0 +1,24 @@
+# Ime našega workflowa
+name: moj-linter
+
+# Določen event kateri bo prožil ta workflow, v našem primero vsakič ko naredimo
+# novi commit in push na ta repository oziroma ta branch
+on: push
+
+jobs:
+  super-lint:
+    # Ime našega opravila
+    name: Lintaj mojo kodo
+    # Operacijski sistem na katerem naj se opravilo izvede
+    runs-on: ubuntu-latest
+    # Koraki izvajanja
+    steps:
+      # Ta korak kopira naš repozitorji na github runner
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Izvede se Super Linter github action
+      - name: Izvedi Super-Linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: master
